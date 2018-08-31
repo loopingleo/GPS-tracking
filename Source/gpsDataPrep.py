@@ -29,7 +29,7 @@ import numpy as np
 ## --------- READ multiple files with sensorLog data -------------------------------------------------------
 
 
-path = os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/SensorLogData/Kyoto")
+path = os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/SensorLogData")
 allFiles = glob.glob(path + "/*.csv")
 frame = pd.DataFrame()
 list_ = []
@@ -220,26 +220,31 @@ gmap.draw("plots/2018-08-30a_all_sensorLog.html")  # saves to html file for disp
 
 
 
-locationlist = df_compressed[["lat","lon"]].values.tolist()
-map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=14)
 
 
-for point in range(0, len(df_compressed), 30):
-    if abs(df_compressed.speed[point]) < 10 / 3.6:  #
+
+
+locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
+map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=5)
+
+
+for point in range(0, len(locationlist), 100):
+    #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
         folium.CircleMarker(locationlist[point], radius=0.0001,#/(1+ (df_compressed["speed"][point])**(4)),
                             color='#f44242', fill_opacity=0.13).add_to(map)
 
 folium.TileLayer('cartodbdark_matter').add_to(map)
+#folium.TileLayer('cartodbpositron').add_to(map)
 
 map
 
-
-#import os
-#import webbrowser
-
-filepath = 'map.html'
+filepath = 'map4.html'
 map.save(filepath)
-#webbrowser.open('file://' + filepath)
+
+
+
+
+
 
 
 
