@@ -235,6 +235,8 @@ for point in range(0, len(locationlist), 100):
 
 folium.TileLayer('cartodbdark_matter').add_to(map)
 #folium.TileLayer('cartodbpositron').add_to(map)
+#folium.TileLayer('Stamen Toner').add_to(map)
+
 
 map
 
