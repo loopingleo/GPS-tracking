@@ -9,7 +9,7 @@ Check out my [visualization of GPS tracks in Kyoto](https://loopingleo.github.io
 
 
 
-[![image](images/Screenshot 2018-08-31 01.49.07.png)](https://loopingleo.github.io/GPS-tracking/kyoto/)
+[![image](images/Screenshot 2018-08-31 22.30.10.png)](https://loopingleo.github.io/GPS-tracking/kyoto/)
     
     
 
