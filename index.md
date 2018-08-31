@@ -4,12 +4,12 @@
 
 
 
-Check out my [visualization of GPS tracks in Kyoto](https://loopingleo.github.io/geolf/map/).
+Check out my [visualization of GPS tracks in Kyoto](https://loopingleo.github.io/geolf/kyoto/).
 
 
 
 
-[![image](images/Screenshot 2018-08-31 01.49.07.png)](https://loopingleo.github.io/GPS-tracking/map/)
+[![image](images/Screenshot 2018-08-31 01.49.07.png)](https://loopingleo.github.io/GPS-tracking/kyoto/)
     
     
 
