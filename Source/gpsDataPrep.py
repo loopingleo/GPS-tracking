@@ -236,6 +236,7 @@ for point in range(0, len(locationlist), 20):
 #f44242 red
 #00d4ff blue
 
+
 folium.TileLayer('cartodbdark_matter').add_to(map)
 #folium.TileLayer('cartodbpositron').add_to(map)
 #folium.TileLayer('Stamen Toner').add_to(map)
