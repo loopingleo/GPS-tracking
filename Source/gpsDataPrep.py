@@ -225,7 +225,7 @@ gmap.draw("plots/2018-08-30a_all_sensorLog.html")  # saves to html file for disp
 
 
 locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
-map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=12)
+map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=10)
 
 
 for point in range(0, len(locationlist), 30):
