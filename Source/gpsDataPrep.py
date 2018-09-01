@@ -228,10 +228,13 @@ locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
 map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=10)
 
 
-for point in range(0, len(locationlist), 30):
+for point in range(0, len(locationlist), 20):
     #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
-        folium.Circle(locationlist[point], radius=2,#/(1+ (df_compressed["speed"][point])**(4)),
-                            color='#f44242', fill=True, fill_color ='#f44242', fill_opacity=0.2, stroke = True, weight = 0.1).add_to(map)
+        folium.Circle(locationlist[point], radius=1,#/(1+ (df_compressed["speed"][point])**(4)),
+                            color='#00d4ff', fill=True, fill_color ='#00d4ff', fill_opacity=0.2, stroke = True, weight = 0.1).add_to(map)
+
+#f44242 red
+#00d4ff blue
 
 folium.TileLayer('cartodbdark_matter').add_to(map)
 #folium.TileLayer('cartodbpositron').add_to(map)
