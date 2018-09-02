@@ -14,7 +14,7 @@
 
 
 
-import gpxpy.parser as parser
+#import gpxpy.parser as parser
 import os, glob
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -114,6 +114,13 @@ df_compressed["xyz_absSum"] = abs(df_compressed["x"]) + abs(df_compressed["y"]) 
 df_compressed["alt_pctChg"] = df_compressed["altitude"].pct_change(periods=1)
 df_compressed["alt_pctChg_rolling"] = df_compressed["alt_pctChg"].rolling(window=3, min_periods=1).mean()
 
+
+
+
+
+
+
+## ---------- PLOTS -------------------------
 #
 df_compressed.z.median()
 df_compressed.z.plot()
@@ -185,7 +192,7 @@ df_down = df_down.dropna()
 
 
 
-## ---------- PLOT ON MAP  ----------------------------
+## ---------- PLOT ON Google MAP  ----------------------------
 
 gmap = gmplot.GoogleMapPlotter(df_compressed.lat.mean(), df_compressed.lon.mean(), 14)
 
@@ -222,11 +229,12 @@ gmap.draw("plots/2018-08-30a_all_sensorLog.html")  # saves to html file for disp
 
 
 
-
+## ---------- PLOT ON OSM MAP with folium  ----------------------------
 
 locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
-map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=10)
-
+map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=11)
+map = folium.Map(location=[(np.max(df_compressed['lat'])-np.min(df_compressed['lat']))/2 + np.min(df_compressed['lat']),
+                           (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=11)
 
 for point in range(0, len(locationlist), 20):
     #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
