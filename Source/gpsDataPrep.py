@@ -232,9 +232,9 @@ gmap.draw("plots/2018-08-30a_all_sensorLog.html")  # saves to html file for disp
 ## ---------- PLOT ON OSM MAP with folium  ----------------------------
 
 locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
-map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=11)
+#map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=7)
 map = folium.Map(location=[(np.max(df_compressed['lat'])-np.min(df_compressed['lat']))/2 + np.min(df_compressed['lat']),
-                           (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=11)
+                           (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=8)
 
 for point in range(0, len(locationlist), 20):
     #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
