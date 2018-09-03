@@ -48,8 +48,10 @@ df_sensorData = pd.concat(list_, sort=True)
 
 #df_sensorData = pd.read_csv(os.path.expanduser("~/Dropbox/04_Golf Analytics/SensorLog data/my_iOS_device_2018-02-15_20-55-33_+0100.csv"), sep=",")
 df_sensorData.info()
+df_sensorData.head(1)
 
-
+with pd.option_context('display.max_rows', 1, 'display.max_columns', None):
+    print(df_sensorData)
 
 df_compressed = df_sensorData[["loggingTime(txt)",
                                "locationTimestamp_since1970(s)",
@@ -236,9 +238,9 @@ locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
 map = folium.Map(location=[(np.max(df_compressed['lat'])-np.min(df_compressed['lat']))/2 + np.min(df_compressed['lat']),
                            (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=8)
 
-for point in range(0, len(locationlist), 20):
+for point in range(0, len(locationlist), 40):
     #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
-        folium.Circle(locationlist[point], radius=1,#/(1+ (df_compressed["speed"][point])**(4)),
+        folium.Circle(locationlist[point], radius=5,#/(1+ (df_compressed["speed"][point])**(4)),
                             color='#00d4ff', fill=True, fill_color ='#00d4ff', fill_opacity=0.2, stroke = True, weight = 0.1).add_to(map)
 
 #f44242 red
@@ -252,6 +254,7 @@ folium.TileLayer('cartodbdark_matter').add_to(map)
 
 map
 
+#filepath = '180902_japan_map.html'
 filepath = 'kyoto/index.html'
 map.save(filepath)
 
