@@ -41,12 +41,30 @@ for file_ in allFiles:
 df_sensorData = pd.concat(list_, sort=True)
 
 
+
+
+
+path = os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/SensorLogData/Kyoto/newML")
+allFiles = glob.glob(path + "/*.csv")
+frame = pd.DataFrame()
+list_ = []
+
+for file_ in allFiles:
+    df = pd.read_csv(file_,index_col=None, header=0)
+    list_.append(df)
+
+df_sensorData_new = pd.concat(list_, sort=True)
+
+
+
+
+
 #frame.info()
 
 
 ## --------- READ sensorLog data -------------------------------------------------------
 
-#df_sensorData = pd.read_csv(os.path.expanduser("~/Dropbox/04_Golf Analytics/SensorLog data/my_iOS_device_2018-02-15_20-55-33_+0100.csv"), sep=",")
+df_sensorData = pd.read_csv(os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/SensorLogData/Kyoto/my_iOS_device_2018-09-06_13-30-14_+0900.csv"), sep=",")
 df_sensorData.info()
 df_sensorData.head(1)
 
@@ -84,6 +102,52 @@ df_compressed = df_compressed.rename(index=str, columns={"loggingTime(txt)":"tim
                                "gyroRotationY(rad/s)":"Ygyro",
                                "gyroRotationZ(rad/s)":"Zgyro"
 })
+
+
+
+
+
+
+
+
+
+
+df_compressed_new = df_sensorData_new[["loggingTime",
+                               "locationTimestamp_since1970",
+                               "loggingSample",
+                               "locationLatitude",
+                               "locationLongitude",
+                               "locationAltitude",
+                               "locationSpeed",
+                               "accelerometerTimestamp_sinceReboot",
+                               "accelerometerAccelerationX",
+                               "accelerometerAccelerationY",
+                               "accelerometerAccelerationZ",
+                               "gyroRotationX",
+                               "gyroRotationY",
+                               "gyroRotationZ"
+                               ]]
+
+df_compressed_new = df_compressed_new.rename(index=str, columns={"loggingTime":"time",
+                               "locationTimestamp_since1970":"time_s1970",
+                               "loggingSample":"sample_ind",
+                               "locationLatitude":"lat",
+                               "locationLongitude":"lon",
+                               "locationAltitude":"altitude",
+                               "locationSpeed":"speed",
+                               "accelerometerTimestamp_sinceReboot":"accel_time",
+                               "accelerometerAccelerationX":"x",
+                               "accelerometerAccelerationY":"y",
+                               "accelerometerAccelerationZ":"z",
+                               "gyroRotationX":"Xgyro",
+                               "gyroRotationY":"Ygyro",
+                               "gyroRotationZ":"Zgyro"
+})
+
+
+df_compressed = pd.concat([df_compressed, df_compressed_new])
+
+
 #df_compressed = df_compressed[:760]
 
 
