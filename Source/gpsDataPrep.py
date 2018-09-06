@@ -18,7 +18,7 @@
 import os, glob
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib
+#import matplotlib
 import gmplot
 import folium
 import mplleaflet
@@ -238,7 +238,7 @@ locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
 map = folium.Map(location=[(np.max(df_compressed['lat'])-np.min(df_compressed['lat']))/2 + np.min(df_compressed['lat']),
                            (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=8)
 
-for point in range(0, len(locationlist), 40):
+for point in range(0, len(locationlist), 60):
     #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
         folium.Circle(locationlist[point], radius=5,#/(1+ (df_compressed["speed"][point])**(4)),
                             color='#00d4ff', fill=True, fill_color ='#00d4ff', fill_opacity=0.2, stroke = True, weight = 0.1).add_to(map)
