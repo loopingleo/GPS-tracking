@@ -64,8 +64,8 @@ df_sensorData_new = pd.concat(list_, sort=True)
 
 ## --------- READ sensorLog data -------------------------------------------------------
 
-df_sensorData = pd.read_csv(os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/SensorLogData/Kyoto/my_iOS_device_2018-09-06_13-30-14_+0900.csv"), sep=",")
-df_sensorData.info()
+#df_sensorData = pd.read_csv(os.path.expanduser("~/Library/Mobile Documents/com~apple~CloudDocs/SensorLogData/Kyoto/my_iOS_device_2018-09-06_13-30-14_+0900.csv"), sep=",")
+#df_sensorData.info()
 df_sensorData.head(1)
 
 with pd.option_context('display.max_rows', 1, 'display.max_columns', None):
@@ -300,7 +300,7 @@ gmap.draw("plots/2018-08-30a_all_sensorLog.html")  # saves to html file for disp
 locationlist = df_compressed[["lat","lon"]].dropna().values.tolist()
 #map = folium.Map(location=[np.mean(df_compressed['lat']), np.mean(df_compressed['lon'])], zoom_start=7)
 map = folium.Map(location=[(np.max(df_compressed['lat'])-np.min(df_compressed['lat']))/2 + np.min(df_compressed['lat']),
-                           (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=8)
+                           (np.max(df_compressed['lon'])-np.min(df_compressed['lon']))/2 + np.min(df_compressed['lon'])], zoom_start=3)
 
 for point in range(0, len(locationlist), 60):
     #if abs(df_compressed.speed[point]) < 0.1 / 3.6:  #
